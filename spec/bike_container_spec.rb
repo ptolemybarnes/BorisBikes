@@ -23,6 +23,9 @@ let(:holder) { ContainerHolder.new }
     holder.dock(bike)
     holder.release(bike)
     expect(holder.bike_count).to eq(0)
+  end  
+
+  it "should release a bike" do
   end
 
   it "should know when it's full" do
