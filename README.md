@@ -1,8 +1,12 @@
-BorisBikes
-==========
-1. Setting up the project & building the bike
+                                        __________             .__         __________.__ __                  
+              \______   \ ___________|__| ______ \______   \__|  | __ ____   ______
+               |    |  _//  _ \_  __ \  |/  ___/  |    |  _/  |  |/ // __ \ /  ___/
+               |    |   (  <_> )  | \/  |\___ \   |    |   \  |    <\  ___/ \___ \ 
+               |______  /\____/|__|  |__/____  >  |______  /__|__|_ \\___  >____  >
+                      \/                     \/          \/        \/    \/     \/ 
 
-Boris bikes are a system of shared public bikes for use accross central London
 
-This program is to model the systems control of boris bikes
+"Boris Bikes" is the name for a system of shared public bikes for use across central London.
+
+by Ptolemy and Jonny.
 
