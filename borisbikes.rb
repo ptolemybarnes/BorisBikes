@@ -1,3 +1,2 @@
 class Bike
-	
 end
