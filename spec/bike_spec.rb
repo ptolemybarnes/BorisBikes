@@ -1,4 +1,3 @@
-	#we're describing the functionality of a specific class, Bike
 require 'borisbikes'
 
 describe Bike do

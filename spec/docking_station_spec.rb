@@ -3,7 +3,8 @@ require 'DockingStation'
 describe DockingStation do 
 
 let(:bike) { Bike.new }
-let(:station) { DockingStation.new(:capacity => 20) }
+let(:station) { DockingStation.new }
+
   def fill_station(station)
     20.times { station.dock(Bike.new) }
   end
@@ -41,4 +42,5 @@ let(:station) { DockingStation.new(:capacity => 20) }
     expect(station.available_bikes).to eq([working_bike])
   end
 
+  
 end
