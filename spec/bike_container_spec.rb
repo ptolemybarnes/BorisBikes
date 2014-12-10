@@ -11,14 +11,35 @@ let(:holder) { ContainerHolder.new }
     20.times { holder.dock(Bike.new) }
   end
 
+  describe "docking" do
 
-  it "should accept a bike" do
-    expect(holder.bike_count).to eq(0)
-    holder.dock(bike)
-    expect(holder.bike_count).to eq(1)
+    it "should accept a bike" do
+      expect(holder.bike_count).to eq(0)
+      holder.dock(bike)
+      expect(holder.bike_count).to eq(1)
+    end
+
+    it "should not accept anything that is not a bike" do
+      holder.dock(bike)
+      expect(lambda{holder.dock("monkey") }).to raise_error(RuntimeError, "there's a monkey in my rack")
+    end
+
+    it "should know when it's full" do
+      expect(holder).not_to be_full
+      fill_holder holder
+      expect(holder).to be_full
+    end
+
+    it "should raise an error if no argument is passed" do
+      holder.dock(bike)
+      expect(lambda{ holder.dock() }).to raise_error(RuntimeError, 'Error: please specify object to be docked')
+    end
+
   end
 
-## tests of release method on bike_container.rb
+
+
+describe "release" do
 
   it "should release a bike" do
     holder.dock(bike)
@@ -46,13 +67,13 @@ let(:holder) { ContainerHolder.new }
     expect(holder.bike_count).to eq(1)
   end
 
-#^^^^^ tests of release method on bike_container.rb
-
-  it "should know when it's full" do
-    expect(holder).not_to be_full
-    fill_holder holder
-    expect(holder).to be_full
+  it "should raise an error when there are no working bikes" do
+    holder.dock(bike)
+    bike.break!
+    expect(lambda {holder.release(bike) }).to raise_error(RuntimeError, "there are no working bikes")
   end
+
+end
 
   it "should not accept a bike if its full" do
     fill_holder holder

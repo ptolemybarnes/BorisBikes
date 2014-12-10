@@ -6,6 +6,10 @@ DEFAULT_CAPACITY = 20
     @bikes ||= []
   end
 
+  def broken_bikes
+    @broken_bikes ||= []
+  end
+
   def capacity
     @capacity ||= DEFAULT_CAPACITY
   end
@@ -18,8 +22,14 @@ DEFAULT_CAPACITY = 20
     bikes.count
   end
 
-  def dock(bike)
-    raise "Holder is full" if full?
+  def dock(bike=nil)
+    if full?
+      raise "Holder is full"  
+    elsif bike == nil
+      raise 'Error: please specify object to be docked'
+    end
+    raise "there's a monkey in my rack" unless bike.class == Bike
+
     bikes << bike
   end
 
@@ -31,9 +41,12 @@ DEFAULT_CAPACITY = 20
       raise 'Error: please specify object to be released'
     elsif bike.class != Bike
       raise 'Error: no monkeys' 
+    elsif available_bikes.count == 0
+      raise 'there are no working bikes'
     end
 
-    bikes.pop(bikes_to_release)
+    bikes.delete_at(bikes.index {|bike| !bike.broken?})
+
   end
 
   def empty?
