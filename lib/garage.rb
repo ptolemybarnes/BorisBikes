@@ -10,7 +10,6 @@ class Garage
 
   def fix_bikes
   	bikes.each { |bike| bike.fix! }
-  	
   end
 
 	
