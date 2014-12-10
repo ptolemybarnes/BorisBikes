@@ -8,5 +8,4 @@ it 'can fix bikes' do
   bike.break!
   end
 
-
 end
