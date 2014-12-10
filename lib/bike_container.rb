@@ -23,7 +23,7 @@ DEFAULT_CAPACITY = 20
     bikes << bike
   end
 
-  def release(bike=nil)
+  def release(bike=nil, bikes_to_release = 1)
     
     if empty?
       raise 'cannot release bike, holder is empty' 
@@ -33,7 +33,7 @@ DEFAULT_CAPACITY = 20
       raise 'Error: no monkeys' 
     end
 
-    bikes.delete(bike)
+    bikes.pop(bikes_to_release)
   end
 
   def empty?

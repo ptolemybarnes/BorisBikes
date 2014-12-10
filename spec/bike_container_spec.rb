@@ -16,7 +16,6 @@ let(:holder) { ContainerHolder.new }
     expect(holder.bike_count).to eq(0)
     holder.dock(bike)
     expect(holder.bike_count).to eq(1)
-
   end
 
 ## tests of release method on bike_container.rb
@@ -39,6 +38,12 @@ let(:holder) { ContainerHolder.new }
   it "should raise an error if something other than a bike is passed to release method" do
     holder.dock(bike)
     expect(lambda {holder.release("MONKEY") }).to raise_error(RuntimeError, 'Error: no monkeys')
+  end
+
+  it "should only release one bike" do
+    2.times { holder.dock(bike) }
+    holder.release(bike)
+    expect(holder.bike_count).to eq(1)
   end
 
 #^^^^^ tests of release method on bike_container.rb
