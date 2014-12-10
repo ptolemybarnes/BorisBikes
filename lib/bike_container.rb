@@ -46,7 +46,6 @@ DEFAULT_CAPACITY = 20
     end
 
     bikes.delete_at(bikes.index {|bike| !bike.broken?})
-
   end
 
   def empty?
