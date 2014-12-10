@@ -23,8 +23,16 @@ DEFAULT_CAPACITY = 20
     bikes << bike
   end
 
-  def release(bike)
-    raise 'cannot release bike, holder is empty' if empty?
+  def release(bike=nil)
+    
+    if empty?
+      raise 'cannot release bike, holder is empty' 
+    elsif bike.nil?
+      raise 'Error: please specify object to be released'
+    elsif bike.class != Bike
+      raise 'Error: no monkeys' 
+    end
+
     bikes.delete(bike)
   end
 

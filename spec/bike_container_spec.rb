@@ -19,6 +19,8 @@ let(:holder) { ContainerHolder.new }
 
   end
 
+## tests of release method on bike_container.rb
+
   it "should release a bike" do
     holder.dock(bike)
     holder.release(bike)
@@ -27,8 +29,19 @@ let(:holder) { ContainerHolder.new }
 
   it "should not cause a fault and return an error message if there are no bikes to delete" do
     expect(lambda{ holder.release(bike) }).to raise_error(RuntimeError, 'cannot release bike, holder is empty' )
-
   end
+
+  it "should raise an error if release is called without passing an argument" do
+    holder.dock(bike)
+    expect(lambda{ holder.release() }).to raise_error(RuntimeError, 'Error: please specify object to be released')
+  end
+
+  it "should raise an error if something other than a bike is passed to release method" do
+    holder.dock(bike)
+    expect(lambda {holder.release("MONKEY") }).to raise_error(RuntimeError, 'Error: no monkeys')
+  end
+
+#^^^^^ tests of release method on bike_container.rb
 
   it "should know when it's full" do
     expect(holder).not_to be_full
