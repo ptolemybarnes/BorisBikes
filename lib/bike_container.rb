@@ -24,7 +24,12 @@ DEFAULT_CAPACITY = 20
   end
 
   def release(bike)
+    raise 'cannot release bike, holder is empty' if empty?
     bikes.delete(bike)
+  end
+
+  def empty?
+    bike_count <= 0
   end
 
   def full?

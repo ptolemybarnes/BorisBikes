@@ -25,6 +25,10 @@ let(:holder) { ContainerHolder.new }
     expect(holder.bike_count).to eq(0)
   end
 
+  it "should not cause a fault and return an error message if there are no bikes to delete" do
+    expect(lambda{ holder.release(bike) }).to raise_error(RuntimeError, 'cannot release bike, holder is empty' )
+
+  end
 
   it "should know when it's full" do
     expect(holder).not_to be_full
@@ -44,5 +48,7 @@ let(:holder) { ContainerHolder.new }
     holder.dock(broken_bike)
     expect(holder.available_bikes).to eq([working_bike])
   end
+
+
 
 end
