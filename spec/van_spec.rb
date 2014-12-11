@@ -6,7 +6,7 @@ let(:van) { Van.new }
 let(:bike) { double(:bike,  :class => Bike, :broken? => false)}
 let(:broken_bike) { double(:broken_bike, :broken? => true, :class => Bike )}
 let(:docking_station) { double(:dock => nil,:release => bike, :bike_count => 5, :broken_bikes => 3, :available_bikes => [bike, bike])}
-
+let(:garage) { double( dock: nil, release: bike, bike_count: 5, broken: 3)}
 
   describe "receive" do
 
@@ -29,7 +29,7 @@ let(:docking_station) { double(:dock => nil,:release => bike, :bike_count => 5, 
   context 'when at garage' do
     it 'should drop off broken bikes at garage' do
       van.dock(broken_bike)
-      van.drop_off(:broken,1,docking_station)
+      van.drop_off(:broken,1,garage)
       expect(van.bike_count).to be_zero
     end
   end
