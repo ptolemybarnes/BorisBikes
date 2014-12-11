@@ -14,8 +14,12 @@ class Van
 			broken_count: location.broken_bikes,
 			working_count: location.available_bikes.count
 		}
-		
-		
 	end
+
+  def collect(bike_type,quantity,location)
+    quantity.times do
+      self.dock(location.release(bike_type)) 
+    end
+  end
 
 end

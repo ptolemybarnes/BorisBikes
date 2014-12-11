@@ -8,7 +8,7 @@ let(:broken_bike) { double(:broken_bike, :broken? => true, :class => Bike )}
 let(:docking_station) { double(:release => bike, :bike_count => 5, :broken_bikes => 3, :available_bikes => [bike, bike])}
 
   describe "receive" do
-    
+
     it "should be able to receive a bike from docking station." do
       released_bike = docking_station.release(bike)
       van.dock(released_bike)
@@ -16,18 +16,25 @@ let(:docking_station) { double(:release => bike, :bike_count => 5, :broken_bikes
     end
   end
 
-	  it "should be able to inquire of the bike inventory" do
-	  	van.inquire(docking_station)
+  describe 'collect bike' do
 
-		end
+    it "should be able to collect working bike" do
+      Shoreditch = docking_station
+      van.collect(bike, 2, Shoreditch)
+      expect(van.available_bikes.count).to eq(2)
+    end
+  end
 
 	describe "inquire" do
 
 		it "should return a total count of 5 bikes" do
+			inventory = van.inquire(docking_station)
+			expect(inventory[:total_count]).to eq(5)
+      expect(inventory[:broken_count]).to eq(3)
+      expect(inventory[:working_count]).to eq(2)
+	  end
+  end
 
-			bike_count = van.inquire(docking_station)[:total_count]
-			expect(bike_count).to eq(5)
-		end
 
-	end
+
 end
