@@ -39,8 +39,8 @@ DEFAULT_CAPACITY = 20
       raise 'cannot release bike, holder is empty' 
     elsif (bike_type != :working) && (bike_type != :broken)
       raise "Error: please request 'working' or 'broken bike'"
-    elsif available_bikes.count == 0 && bike_type != :broken
-      raise 'there are no working bikes' 
+    elsif available_bikes.count == 0
+      raise 'there are no working bikes' unless bike_type == :broken
     end
 
     if bike_type == :broken

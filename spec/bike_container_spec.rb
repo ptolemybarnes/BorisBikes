@@ -62,7 +62,7 @@ let(:holder) { ContainerHolder.new }
 
     it "should raise an error when there are no working bikes" do
       holder.dock(broken_bike)
-      expect(lambda {holder.release(:broken) }).to raise_error(RuntimeError, "there are no working bikes")
+      expect(lambda {holder.release }).to raise_error(RuntimeError, "there are no working bikes")
     end
   end
 

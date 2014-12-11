@@ -22,4 +22,11 @@ class Van
     end
   end
 
+  def drop_off(bike_type,quantity,location)
+    quantity.times do
+      released_bike = release(bike_type)
+      location.dock(released_bike)
+    end
+  end
+
 end

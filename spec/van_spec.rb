@@ -5,7 +5,8 @@ describe Van do
 let(:van) { Van.new }
 let(:bike) { double(:bike,  :class => Bike, :broken? => false)}
 let(:broken_bike) { double(:broken_bike, :broken? => true, :class => Bike )}
-let(:docking_station) { double(:release => bike, :bike_count => 5, :broken_bikes => 3, :available_bikes => [bike, bike])}
+let(:docking_station) { double(:dock => nil,:release => bike, :bike_count => 5, :broken_bikes => 3, :available_bikes => [bike, bike])}
+
 
   describe "receive" do
 
@@ -22,6 +23,14 @@ let(:docking_station) { double(:release => bike, :bike_count => 5, :broken_bikes
       Shoreditch = docking_station
       van.collect(:working_bike, 2, Shoreditch)
       expect(van.available_bikes.count).to eq(2)
+    end
+  end
+
+  context 'when at garage' do
+    it 'should drop off broken bikes at garage' do
+      van.dock(broken_bike)
+      van.drop_off(:broken,1,docking_station)
+      expect(van.bike_count).to be_zero
     end
   end
 
