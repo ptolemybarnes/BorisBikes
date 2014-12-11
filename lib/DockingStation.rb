@@ -7,7 +7,11 @@ attr_reader :name
 
   def initialize(options = {})
     @capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
-    @name = options.fetch(:name)
+    @name = get_london_name
+  end
+
+  def get_london_name
+
   end
 
 end
