@@ -8,4 +8,9 @@ let(:station) { DockingStation.new(:capacity => 123)}
     expect(station.capacity).to eq(123)
   end
 
+  it "should have a name" do
+
+
+  end
+
 end

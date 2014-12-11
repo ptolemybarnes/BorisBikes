@@ -41,33 +41,28 @@ let(:holder) { ContainerHolder.new }
 
     it "should release a bike" do
       holder.dock(bike)
-      holder.release(bike)
+      holder.release
       expect(holder.bike_count).to eq(0)
     end
 
     it "should not cause a fault and return an error message if there are no bikes to delete" do
-      expect(lambda{ holder.release(bike) }).to raise_error(RuntimeError, 'cannot release bike, holder is empty' )
-    end
-
-    it "should raise an error if release is called without passing an argument" do
-      holder.dock(bike)
-      expect(lambda{ holder.release() }).to raise_error(RuntimeError, 'Error: please specify object to be released')
+      expect(lambda{ holder.release }).to raise_error(RuntimeError, 'cannot release bike, holder is empty' )
     end
 
     it "should raise an error if something other than a bike is passed to release method" do
       holder.dock(bike)
-      expect(lambda {holder.release("MONKEY") }).to raise_error(RuntimeError, 'Error: no monkeys')
+      expect(lambda {holder.release(:monkey) }).to raise_error(RuntimeError, "Error: please request 'working' or 'broken bike'")
     end
 
     it "should only release one bike" do
       2.times { holder.dock(bike) }
-      holder.release(bike)
+      holder.release
       expect(holder.bike_count).to eq(1)
     end
 
     it "should raise an error when there are no working bikes" do
       holder.dock(broken_bike)
-      expect(lambda {holder.release(broken_bike) }).to raise_error(RuntimeError, "there are no working bikes")
+      expect(lambda {holder.release(:broken) }).to raise_error(RuntimeError, "there are no working bikes")
     end
   end
 
@@ -86,6 +81,6 @@ let(:holder) { ContainerHolder.new }
       expect(holder).to be_empty
     end
   
-  
+
 
 end

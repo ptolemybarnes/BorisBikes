@@ -33,19 +33,21 @@ DEFAULT_CAPACITY = 20
     bikes << bike
   end
 
-  def release(bike=nil, bikes_to_release = 1)
+  def release(bike_type=:working, bikes_to_release = 1)
     
     if empty?
       raise 'cannot release bike, holder is empty' 
-    elsif bike.nil?
-      raise 'Error: please specify object to be released'
-    elsif bike.class != Bike
-      raise 'Error: no monkeys' 
+    elsif (bike_type != :working) && (bike_type != :broken)
+      raise "Error: please request 'working' or 'broken bike'"
     elsif available_bikes.count == 0
       raise 'there are no working bikes'
     end
 
-    bikes.delete_at(bikes.index {|bike| !bike.broken?})
+    if bike_type == :broken
+      bikes.delete_at(bikes.index {|bike| bike.broken?})
+    else
+      bikes.delete_at(bikes.index {|bike| !bike.broken?})
+    end
   end
 
   def empty?

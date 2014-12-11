@@ -20,7 +20,7 @@ let(:docking_station) { double(:release => bike, :bike_count => 5, :broken_bikes
 
     it "should be able to collect working bike" do
       Shoreditch = docking_station
-      van.collect(bike, 2, Shoreditch)
+      van.collect(:working_bike, 2, Shoreditch)
       expect(van.available_bikes.count).to eq(2)
     end
   end
