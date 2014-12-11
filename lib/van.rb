@@ -8,5 +8,14 @@ class Van
 		self.capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
 	end
 
+	def inquire(location)
+		bike_inventory = {
+			total_count: location.bike_count,
+			broken_count: location.broken_bikes,
+			working_count: location.available_bikes.count
+		}
+		
+		
+	end
 
 end
