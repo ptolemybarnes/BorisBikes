@@ -1,3 +1,5 @@
+require 'byebug'
+
 module BikeContainer
 
 DEFAULT_CAPACITY = 20
