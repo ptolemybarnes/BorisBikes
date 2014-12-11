@@ -9,10 +9,10 @@ let(:broken_bike) { double(:broken_bike, :broken? => true, :class => Bike )}
 let(:holder) { ContainerHolder.new }
 
   def fill_holder(holder)
-    20.times { holder.dock(Bike.new) }
+    20.times { holder.dock(bike) }
   end
 
-  describe "docking" do
+  describe "dock" do
 
     it "should accept a bike" do
       expect(holder.bike_count).to eq(0)
@@ -35,10 +35,7 @@ let(:holder) { ContainerHolder.new }
       holder.dock(bike)
       expect(lambda{ holder.dock() }).to raise_error(RuntimeError, 'Error: please specify object to be docked')
     end
-
   end
-
-
 
   describe "release" do
 
@@ -72,7 +69,6 @@ let(:holder) { ContainerHolder.new }
       holder.dock(broken_bike)
       expect(lambda {holder.release(broken_bike) }).to raise_error(RuntimeError, "there are no working bikes")
     end
-
   end
 
   it "should not accept a bike if its full" do
@@ -86,6 +82,10 @@ let(:holder) { ContainerHolder.new }
     expect(holder.available_bikes).to eq([bike])
   end
 
-
+  it "empty? should return true when docking station is empty" do
+      expect(holder).to be_empty
+    end
+  
+  
 
 end
