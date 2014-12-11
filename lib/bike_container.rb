@@ -1,4 +1,4 @@
-require 'byebug'
+
 
 module BikeContainer
 
@@ -33,6 +33,9 @@ DEFAULT_CAPACITY = 20
     raise "there's a monkey in my rack" unless bike.class == Bike
 
     bikes << bike
+    if self.respond_to?(:fix_bikes)
+      self.fix_bikes
+    end
   end
 
   def release(bike_type=:working, bikes_to_release = 1)
