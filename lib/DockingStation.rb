@@ -13,7 +13,7 @@ attr_reader :name
   end
 
   def get_london_name
-  	File.readlines("./lib/london_areas_array.txt").sample.chomp
+  File.readlines("./lib/london_areas_array.txt").sample.chomp
 
   end
 
