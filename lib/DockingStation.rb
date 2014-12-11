@@ -2,7 +2,7 @@ require_relative 'bike_container'
 
 class DockingStation
 attr_reader :name
-STATIONS_LIST = []
+@@stations_list = []
 
   include BikeContainer
 
@@ -10,7 +10,7 @@ STATIONS_LIST = []
     @capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
     @name = get_london_name
     
-    STATIONS_LIST << self
+    @@stations_list << self
   end
 
   def get_london_name
@@ -18,7 +18,7 @@ STATIONS_LIST = []
   end
 
   def get_station_names
-  	STATIONS_LIST.map { |station| station.name }
+  	@@stations_list.map { |station| station.name }
   end
 
 
