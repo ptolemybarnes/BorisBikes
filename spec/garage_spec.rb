@@ -9,6 +9,14 @@ it 'can fix bikes' do
   garage.dock(bike)
   garage.fix_bikes
   expect(garage.bikes.sample).not_to be_broken
-  end
+ end
+
+it 'can fix bikes as soon as they arrive' do
+	broken_bike = bike.break!
+	garage.dock(broken_bike)
+	expect(garage.bikes.sample).not_to be_broken
+
+end
+
 
 end
