@@ -4,8 +4,8 @@ class ContainerHolder; include BikeContainer; end
 
 describe ContainerHolder do 
 
-let(:bike) { double(:bike, :class => Bike)}
-let(:broken_bike) { double(:broken_bike, :broken? => true )}
+let(:bike) { double(:bike,  :class => Bike, :broken? => false)}
+let(:broken_bike) { double(:broken_bike, :broken? => true, :class => Bike )}
 let(:working_bike) { double(:working_bike, :broken? => false )}
 let(:holder) { ContainerHolder.new }
 
@@ -70,9 +70,8 @@ let(:holder) { ContainerHolder.new }
     end
 
     it "should raise an error when there are no working bikes" do
-      holder.dock(bike)
-      bike.break!
-      expect(lambda {holder.release(bike) }).to raise_error(RuntimeError, "there are no working bikes")
+      holder.dock(broken_bike)
+      expect(lambda {holder.release(broken_bike) }).to raise_error(RuntimeError, "there are no working bikes")
     end
 
   end
