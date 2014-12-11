@@ -10,7 +10,7 @@ let(:docking_station) { double(:release => bike, :bike_count => 5, :broken_bikes
   describe "receive" do
 
     it "should be able to receive a bike from docking station." do
-      released_bike = docking_station.release(bike)
+      released_bike = docking_station.release
       van.dock(released_bike)
       expect(van.bike_count).to eq(1)
     end
